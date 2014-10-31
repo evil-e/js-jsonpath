@@ -1,0 +1,88 @@
+<!doctype html> 
+<html lang="en"> 
+<!-- see http://href.xyz/json/license.txt -->
+<head> 
+    <meta charset="utf-8" /> 
+    <title>JSON Path helper</title> 
+    <script src="jsonpath.js"></script>
+    <script>
+      window.onload = function () {
+	document.getElementById("source").onclick = function() {
+	try {
+		var theCursorLocation = 0;
+
+		// find the cursor location via IE method...
+		if (document.selection) {
+			ofThisInput.focus();
+			var theSelectionRange = document.selection.createRange();
+			theSelectionRange.moveStart('character', - this.value.length);
+			theCursorLocation = theSelectionRange.text.length;
+		} else if (this.selectionStart || this.selectionStart == '0') {
+		// or the FF way
+			theCursorLocation = this.selectionStart;
+		}
+	     var result = jsonpath.exec(document.getElementById("source").value, theCursorLocation);
+            if (result)
+            {
+              document.getElementById("result").innerHTML = result;
+              document.getElementById("result").className = "pass";
+            }
+          } catch(e) {
+           document.getElementById("result").innerHTML = e;
+           document.getElementById("result").className = "fail";
+       }
+	};
+	}
+    </script>
+    <style>
+      body {font-family: sans-serif;}
+      #result {
+        padding: 1em;
+      }
+      .pass {
+        background-color: #efe;
+        color: #393;
+        border: 2px solid #393;
+      }
+      .fail {
+        background-color: #fee;
+        color: #933;
+        border: 2px solid #933;
+      }
+      textarea { width: 100%; }
+    </style>
+</head> 
+<body> 
+  <h1>JSON Path helper</h1> 
+  <p>Just click a string within the JSON blob below.</p>
+  <textarea id="source" rows="20" cols="50">
+{
+  "glossary": {
+    "title": "example glossary",
+    "GlossDiv": {
+      "title": "S",
+      "GlossList": {
+        "GlossEntry": {
+          "ID": "SGML",
+          "SortAs": "SGML",
+          "GlossTerm": "Standard Generalized Markup Language",
+          "Acronym": "SGML",
+          "Abbrev": "ISO 8879:1986",
+          "GlossDef": {
+            "para": "A meta-markup language, used to create markup languages such as DocBook.",
+            "GlossSeeAlso": [
+              "GML",
+              "XML"
+            ]
+          },
+          "GlossSee": "markup"
+        }
+      }
+    }
+  }
+}
+  </textarea>
+  <h2>Results</h2>
+  <pre id="result"></pre>
+</body> 
+</html> 
