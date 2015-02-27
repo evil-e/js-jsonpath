@@ -1,0 +1,27 @@
+{
+  "name": "js-jsonpath",
+  "version": "1.0.0",
+  "description": "JSON Path Helper is a simple tool to assist programmers recover JSON path expressions for a given JSON blob",
+  "main": "parser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evil-e/js-jsonpath.git"
+  },
+  "keywords": [
+    "json",
+    "js",
+    "node"
+  ],
+  "author": "Jon Erickson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evil-e/js-jsonpath/issues"
+  },
+  "homepage": "https://github.com/evil-e/js-jsonpath",
+  "dependencies": {
+    "jison": "^0.4.15"
+  }
+}
